@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+from builtins import object
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
@@ -674,7 +675,7 @@ class NmapParser(object):
                                       "data attributes: format is not XML or "
                                       "XML tag is empty")
         try:
-            for dkey in elt_data.keys():
+            for dkey in list(elt_data.keys()):
                 rval[dkey] = elt_data.get(dkey)
                 if rval[dkey] is None:
                     raise NmapParserException("Error while trying to build-up "

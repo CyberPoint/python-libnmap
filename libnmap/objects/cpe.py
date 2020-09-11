@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+from builtins import zip
+from builtins import object
 class CPE(object):
     """
         CPE class offers an API for basic CPE objects.
@@ -15,7 +17,7 @@ class CPE(object):
               'update', 'edition', 'language']
         self._cpedict = dict((k, '') for k in zk)
         splitup = cpestring.split(':')
-        self._cpedict.update(dict(zip(zk, splitup)))
+        self._cpedict.update(dict(list(zip(zk, splitup))))
 
     @property
     def cpestring(self):

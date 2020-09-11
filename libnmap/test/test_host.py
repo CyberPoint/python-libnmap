@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 import unittest
 from libnmap.parser import NmapParser
 
@@ -227,5 +228,5 @@ class TestNmapHost(unittest.TestCase):
 
 if __name__ == '__main__':
     test_suite = ['test_eq_host', 'test_host_api', 'test_diff_host']
-    suite = unittest.TestSuite(map(TestNmapHost, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapHost, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

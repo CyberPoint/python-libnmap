@@ -11,6 +11,7 @@
 .. moduleauthor:: Ronald Bister
 .. moduleauthor:: Mike Boutillier
 """
+from builtins import str
 import json
 from bson.objectid import ObjectId
 from boto.s3.connection import S3Connection, OrdinaryCallingFormat

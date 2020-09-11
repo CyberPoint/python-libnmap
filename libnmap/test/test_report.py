@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
+from builtins import str
+from builtins import range
 import unittest
 import os
 
@@ -230,5 +233,5 @@ if __name__ == '__main__':
                   'test_host_equal', 'test_host_address_changed',
                   'test_host_address_unchanged']
 
-    suite = unittest.TestSuite(map(TestNmapParser, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapParser, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

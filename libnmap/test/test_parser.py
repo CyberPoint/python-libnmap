@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+from builtins import map
 import unittest
 import os
 from libnmap.parser import NmapParser, NmapParserException
@@ -179,5 +181,5 @@ if __name__ == '__main__':
     test_suite = ['test_class_parser', 'test_class_ports_parser',
                   'test_class_port_parser', 'test_port_except',
                   'test_parser_generic']
-    suite = unittest.TestSuite(map(TestNmapParser, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapParser, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+from builtins import range
+from builtins import object
 import os
 import shlex
 import subprocess
@@ -125,7 +128,7 @@ class NmapProcess(Thread):
         else:
             self.__nmap_event_callback = None
         (self.DONE, self.READY, self.RUNNING,
-         self.CANCELLED, self.FAILED) = range(5)
+         self.CANCELLED, self.FAILED) = list(range(5))
         self._run_init()
 
     def _run_init(self):
@@ -363,30 +366,30 @@ class NmapProcess(Thread):
             for xlmnt, xmlnode in edomdoc:
                 if xlmnt is not None and xlmnt == pulldom.START_ELEMENT:
                     if (xmlnode.nodeName == 'taskbegin' and
-                            xmlnode.attributes.keys()):
+                            list(xmlnode.attributes.keys())):
                         xt = xmlnode.attributes
                         taskname = xt['task'].value
                         starttime = xt['time'].value
                         xinfo = ''
-                        if 'extrainfo' in xt.keys():
+                        if 'extrainfo' in list(xt.keys()):
                             xinfo = xt['extrainfo'].value
                         newtask = NmapTask(taskname, starttime, xinfo)
                         self.__nmap_tasks[newtask.name] = newtask
                         self.__current_task = newtask.name
                         rval = True
                     elif (xmlnode.nodeName == 'taskend' and
-                            xmlnode.attributes.keys()):
+                            list(xmlnode.attributes.keys())):
                         xt = xmlnode.attributes
                         tname = xt['task'].value
                         xinfo = ''
                         self.__nmap_tasks[tname].endtime = xt['time'].value
-                        if 'extrainfo' in xt.keys():
+                        if 'extrainfo' in list(xt.keys()):
                             xinfo = xt['extrainfo'].value
                         self.__nmap_tasks[tname].extrainfo = xinfo
                         self.__nmap_tasks[tname].status = "ended"
                         rval = True
                     elif (xmlnode.nodeName == 'taskprogress' and
-                            xmlnode.attributes.keys()):
+                            list(xmlnode.attributes.keys())):
                         xt = xmlnode.attributes
                         tname = xt['task'].value
                         percent = xt['percent'].value
@@ -400,12 +403,12 @@ class NmapProcess(Thread):
                         self.__nmap_tasks[tname].updated = updated
                         rval = True
                     elif (xmlnode.nodeName == 'nmaprun' and
-                            xmlnode.attributes.keys()):
+                            list(xmlnode.attributes.keys())):
                         self.__starttime = xmlnode.attributes['start'].value
                         self.__version = xmlnode.attributes['version'].value
                         rval = True
                     elif (xmlnode.nodeName == 'finished' and
-                            xmlnode.attributes.keys()):
+                            list(xmlnode.attributes.keys())):
                         self.__endtime = xmlnode.attributes['time'].value
                         self.__elapsed = xmlnode.attributes['elapsed'].value
                         self.__summary = xmlnode.attributes['summary'].value
@@ -608,15 +611,15 @@ def main():
                      event_callback=mycallback)
     rc = nm.run()
     if rc == 0:
-        print("Scan started at {0} nmap version: {1}").format(nm.starttime,
-                                                              nm.version)
-        print("state: {0} (rc: {1})").format(nm.state, nm.rc)
-        print("results size: {0}").format(len(nm.stdout))
-        print("Scan ended {0}: {1}").format(nm.endtime, nm.summary)
+        print(("Scan started at {0} nmap version: {1}").format(nm.starttime,
+                                                              nm.version))
+        print(("state: {0} (rc: {1})").format(nm.state, nm.rc))
+        print(("results size: {0}").format(len(nm.stdout)))
+        print(("Scan ended {0}: {1}").format(nm.endtime, nm.summary))
     else:
-        print("state: {0} (rc: {1})").format(nm.state, nm.rc)
-        print("Error: {stderr}").format(stderr=nm.stderr)
-        print("Result: {0}").format(nm.stdout)
+        print(("state: {0} (rc: {1})").format(nm.state, nm.rc))
+        print(("Error: {stderr}").format(stderr=nm.stderr))
+        print(("Result: {0}").format(nm.stdout))
 
 if __name__ == '__main__':
     main()

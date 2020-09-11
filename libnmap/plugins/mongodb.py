@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from builtins import str
 import json
 from pymongo import MongoClient
 from bson.objectid import ObjectId
