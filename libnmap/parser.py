@@ -2,6 +2,7 @@
 
 
 from builtins import object
+import future
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
@@ -80,7 +81,7 @@ class NmapParser(object):
         if not nmap_data:
             raise NmapParserException("No report data to parse: please "
                                       "provide a valid XML nmap report")
-        elif not isinstance(nmap_data, str):
+        elif not isinstance(nmap_data, str) or not isinstance(nmap_data,future.types.newstr):
             raise NmapParserException("wrong nmap_data type given as "
                                       "argument: cannot parse data")
 
