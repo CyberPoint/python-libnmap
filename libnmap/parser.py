@@ -161,7 +161,7 @@ class NmapParser(object):
             :return: NmapObject
         """
 
-        if not isinstance(nmap_data, str)  and not isinstance(nmap_data,future.types.newstr:
+        if not isinstance(nmap_data, str)  and not isinstance(nmap_data,future.types.newstr):
             raise NmapParserException("bad argument type for "
                                       "xarse_fromstring(): should be a string")
         return cls.parse(nmap_data, data_type, incomplete)
