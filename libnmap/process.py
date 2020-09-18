@@ -4,6 +4,7 @@
 from __future__ import print_function
 from builtins import range
 from builtins import object
+import future
 import os
 import shlex
 import subprocess
@@ -107,7 +108,7 @@ class NmapProcess(Thread):
             raise EnvironmentError(1, "nmap is not installed or could "
                                       "not be found in system path")
 
-        if isinstance(targets, str):
+        if isinstance(targets, str) or isinstance(targets,future.types.newstr):
             self.__nmap_targets = targets.replace(" ", "").split(',')
         elif isinstance(targets, list):
             self.__nmap_targets = targets
