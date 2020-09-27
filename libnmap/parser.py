@@ -2,7 +2,6 @@
 
 
 from builtins import object
-import future
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
@@ -81,7 +80,7 @@ class NmapParser(object):
         if not nmap_data:
             raise NmapParserException("No report data to parse: please "
                                       "provide a valid XML nmap report")
-        elif not isinstance(nmap_data, str) and not isinstance(nmap_data,future.types.newstr):
+        elif not isinstance(nmap_data, basestring):
             raise NmapParserException("wrong nmap_data type given as "
                                       "argument: cannot parse data")
 
@@ -161,7 +160,7 @@ class NmapParser(object):
             :return: NmapObject
         """
 
-        if not isinstance(nmap_data, str)  and not isinstance(nmap_data,future.types.newstr):
+        if not isinstance(nmap_data, basestring):
             raise NmapParserException("bad argument type for "
                                       "xarse_fromstring(): should be a string")
         return cls.parse(nmap_data, data_type, incomplete)

@@ -108,7 +108,7 @@ class NmapProcess(Thread):
             raise EnvironmentError(1, "nmap is not installed or could "
                                       "not be found in system path")
 
-        if isinstance(targets, str) or isinstance(targets,future.types.newstr):
+        if isinstance(targets, basestring):
             self.__nmap_targets = targets.replace(" ", "").split(',')
         elif isinstance(targets, list):
             self.__nmap_targets = targets
