@@ -189,13 +189,21 @@ class NmapProcess(Thread):
         :rtype: string
         """
         if self.using_proxychains:
-            return ("{0} -f {1} {2} {3} {4} {5} {6}".format( 	self.__sudo_run,
+            if self.path_to_proxychains is not None:
+                return ("{0} -f {1} {2} {3} {4} {5} {6}".format( 	self.__sudo_run,
+                                                                    self.path_to_proxychains,
+                                                                    self.proxychains_config,
+                                                                    self.__nmap_binary,
+                                                                    self.__nmap_fixed_options,
+                                                                    self.__nmap_dynamic_options,
+                                                                    " ".join(self.__nmap_targets)))
+            else:
+                return ("{0} {1} {2} {3} {4} {5}".format( 	    self.__sudo_run,
                                                                 self.path_to_proxychains,
-                                                                self.proxychains_config,
                                                                 self.__nmap_binary,
                                                                 self.__nmap_fixed_options,
                                                                 self.__nmap_dynamic_options,
-                                                                " ".join(self.__nmap_targets)))
+                                                                " ".join(self.__nmap_targets)))                
         else:
             return ("{0} {1} {2} {3} {4}".format(self.__sudo_run,
                                                 self.__nmap_binary,
