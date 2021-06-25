@@ -107,7 +107,7 @@ class NmapProcess(Thread):
         self.path_to_proxychains = None
         if using_proxychains:
             self.using_proxychains = True
-            self.path_to_proxychains = '/usr/bin/proxychains4
+            self.path_to_proxychains = '/usr/bin/proxychains4'
         else:
             self.using_proxychains = False
         
