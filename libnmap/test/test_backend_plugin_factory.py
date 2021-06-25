@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 import unittest
 import os
 from libnmap.parser import NmapParser
@@ -161,5 +162,5 @@ if __name__ == '__main__':
                   'test_backend_getall',
                   'test_backend_delete'
                   ]
-    suite = unittest.TestSuite(map(TestNmapBackendPlugin, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapBackendPlugin, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=5).run(suite)

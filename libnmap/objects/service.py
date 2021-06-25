@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from builtins import str
+from builtins import object
 from libnmap.diff import NmapDiff
 from libnmap.objects.os import CPE
 
@@ -219,7 +221,7 @@ class NmapService(object):
                        'servicefp', 'tunnel']
         relevant = ['product', 'version', 'extrainfo']
         b = ''
-        skeys = self._service.keys()
+        skeys = list(self._service.keys())
         if 'method' in self._service and self._service['method'] == "probed":
             for relk in relevant:
                 if relk in skeys:

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from builtins import str
+from builtins import object
 from libnmap.diff import NmapDiff
 from libnmap.objects.os import NmapOSFingerprint
 

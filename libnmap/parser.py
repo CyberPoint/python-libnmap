@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+from builtins import object
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
@@ -79,7 +80,7 @@ class NmapParser(object):
         if not nmap_data:
             raise NmapParserException("No report data to parse: please "
                                       "provide a valid XML nmap report")
-        elif not isinstance(nmap_data, str):
+        elif not isinstance(nmap_data, basestring):
             raise NmapParserException("wrong nmap_data type given as "
                                       "argument: cannot parse data")
 
@@ -159,7 +160,7 @@ class NmapParser(object):
             :return: NmapObject
         """
 
-        if not isinstance(nmap_data, str):
+        if not isinstance(nmap_data, basestring):
             raise NmapParserException("bad argument type for "
                                       "xarse_fromstring(): should be a string")
         return cls.parse(nmap_data, data_type, incomplete)
@@ -674,7 +675,7 @@ class NmapParser(object):
                                       "data attributes: format is not XML or "
                                       "XML tag is empty")
         try:
-            for dkey in elt_data.keys():
+            for dkey in list(elt_data.keys()):
                 rval[dkey] = elt_data.get(dkey)
                 if rval[dkey] is None:
                     raise NmapParserException("Error while trying to build-up "

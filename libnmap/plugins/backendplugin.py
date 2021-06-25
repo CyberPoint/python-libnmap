@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 
+from builtins import object
 class NmapBackendPlugin(object):
     """
         Abstract class showing to the minimal implementation for a plugin

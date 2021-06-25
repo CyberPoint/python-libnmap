@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 from libnmap.objects.os import CPE
 import unittest
 
@@ -58,5 +59,5 @@ class TestNmapFP(unittest.TestCase):
 
 if __name__ == '__main__':
     test_suite = ['test_cpe', 'test_full_cpe']
-    suite = unittest.TestSuite(map(TestNmapFP, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapFP, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

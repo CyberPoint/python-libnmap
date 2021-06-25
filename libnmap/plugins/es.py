@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import json
 from libnmap.reportjson import ReportEncoder
 from libnmap.plugins.backendplugin import NmapBackendPlugin

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 import unittest
 import os
 from libnmap.parser import NmapParser
@@ -142,5 +143,5 @@ class TestNmapFP(unittest.TestCase):
 if __name__ == '__main__':
     test_suite = ['test_fp', 'test_fpv6', 'test_osmatches_new', 'test_osclasses_new',
             'test_fpv5', 'test_osmatches_old', 'test_cpeservice', 'test_os_class_probabilities']
-    suite = unittest.TestSuite(map(TestNmapFP, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapFP, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

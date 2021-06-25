@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import print_function
+from builtins import str
 from libnmap.process import NmapProcess
 from libnmap.parser import NmapParser, NmapParserException
 

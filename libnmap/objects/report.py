@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from builtins import str
+from builtins import object
 from libnmap.diff import NmapDiff
 
 
@@ -324,7 +326,7 @@ class NmapReport(object):
         rdata = self.get_raw_data()
         _consistent_keys = ['_nmaprun', '_scaninfo', '_hosts', '_runstats']
         if(set(_consistent_keys) == set(rdata.keys()) and
-           len([dky for dky in rdata.keys() if rdata[dky] is not None]) == 4):
+           len([dky for dky in list(rdata.keys()) if rdata[dky] is not None]) == 4):
             rval = True
         return rval
 

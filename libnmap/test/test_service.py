@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 import unittest
 from libnmap.parser import NmapParser
 from libnmap.diff import NmapDiffException
@@ -257,5 +258,5 @@ if __name__ == '__main__':
     test_suite = ['test_port_state_changed', 'test_port_state_unchanged',
                   'test_port_service_changed', 'test_eq_service',
                   'test_diff_service']
-    suite = unittest.TestSuite(map(TestNmapService, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapService, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)

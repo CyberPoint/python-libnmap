@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+from builtins import object
 class DictDiffer(object):
     """
         Calculate the difference between two dictionaries as:

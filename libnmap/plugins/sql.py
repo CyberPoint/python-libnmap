@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from builtins import bytes
 from sqlalchemy import create_engine
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Integer, DateTime, LargeBinary

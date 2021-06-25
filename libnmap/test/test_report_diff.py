@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import map
 import unittest
 import os
 from libnmap.parser import NmapParser
@@ -60,5 +61,5 @@ class TestNmapReportDiff(unittest.TestCase):
 
 if __name__ == '__main__':
     test_suite = ['test_diff_host_list']
-    suite = unittest.TestSuite(map(TestNmapReportDiff, test_suite))
+    suite = unittest.TestSuite(list(map(TestNmapReportDiff, test_suite)))
     test_result = unittest.TextTestRunner(verbosity=2).run(suite)
