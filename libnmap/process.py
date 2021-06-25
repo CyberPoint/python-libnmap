@@ -190,7 +190,7 @@ class NmapProcess(Thread):
         """
         if self.using_proxychains:
             if self.path_to_proxychains is not None:
-                return ("{0} -f {1} {2} {3} {4} {5} {6}".format( 	self.__sudo_run,
+                return ("{0} {1} -f {2} {3} {4} {5} {6}".format( 	self.__sudo_run,
                                                                     self.path_to_proxychains,
                                                                     self.proxychains_config,
                                                                     self.__nmap_binary,
