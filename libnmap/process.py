@@ -104,18 +104,18 @@ class NmapProcess(Thread):
             self.__nmap_binary = self._whereis(nmap_binary_name)
         self.__nmap_fixed_options = "-oX - -vvv --stats-every 1s"
 
-	self.path_to_proxychains = None
-	if using_proxychains:
-	    self.using_proxychains = True
-	    self.path_to_proxychains = '/usr/bin/proxychains4
-	else:
-	    self.using_proxychains = False
-	
-	self.proxychains_config = None
-	if proxychains_config is not None:
-	    self.proxychains_config = proxychains_config
-	else:
-	    self.proxychains_config = None
+        self.path_to_proxychains = None
+        if using_proxychains:
+            self.using_proxychains = True
+            self.path_to_proxychains = '/usr/bin/proxychains4
+        else:
+            self.using_proxychains = False
+        
+        self.proxychains_config = None
+        if proxychains_config is not None:
+            self.proxychains_config = proxychains_config
+        else:
+            self.proxychains_config = None
 
         if self.__nmap_binary is None:
             raise EnvironmentError(1, "nmap is not installed or could "
@@ -188,20 +188,20 @@ class NmapProcess(Thread):
         :return: the full nmap command line to run
         :rtype: string
         """
-	if self.using_proxychains:
-	    return ("{0} -f {1} {2} {3} {4} {5} {6}".format( 	self.path_to_proxychains,
-								self.proxychains_config,
-						     		self.__sudo_run,
-	                                         		self.__nmap_binary,
-	                                         		self.__nmap_fixed_options,
-	                                         		self.__nmap_dynamic_options,
-	                                         		" ".join(self.__nmap_targets)))
-	else:
-	    return ("{0} {1} {2} {3} {4}".format(self.__sudo_run,
-	                                         self.__nmap_binary,
-	                                         self.__nmap_fixed_options,
-	                                         self.__nmap_dynamic_options,
-	                                         " ".join(self.__nmap_targets)))
+        if self.using_proxychains:
+            return ("{0} -f {1} {2} {3} {4} {5} {6}".format( 	self.__sudo_run,
+                                                                self.path_to_proxychains,
+                                                                self.proxychains_config,
+                                                                self.__nmap_binary,
+                                                                self.__nmap_fixed_options,
+                                                                self.__nmap_dynamic_options,
+                                                                " ".join(self.__nmap_targets)))
+        else:
+            return ("{0} {1} {2} {3} {4}".format(self.__sudo_run,
+                                                self.__nmap_binary,
+                                                self.__nmap_fixed_options,
+                                                self.__nmap_dynamic_options,
+                                                " ".join(self.__nmap_targets)))
 
     def sudo_run(self, run_as='root'):
         """
